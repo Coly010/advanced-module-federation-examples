@@ -3,3 +3,6 @@
 ## Mixing Angular and React MFEs
 - [Angular in React](./examples/angular-react-mfes/angular-in-react/README.md)
 - [React in Angular](./examples/angular-react-mfes/react-in-angular/README.md)
+
+## Handle Offline Remotes
+- [Retry Remotes with Fallback](./examples/retry-remotes/README.md)
