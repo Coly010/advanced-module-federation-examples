@@ -1,0 +1,112 @@
+{
+  "name": "wc-angular-remote",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "examples/angular-react-mfes/angular-in-react/wc-angular-remote/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/examples/angular-react-mfes/angular-in-react/wc-angular-remote",
+        "index": "examples/angular-react-mfes/angular-in-react/wc-angular-remote/src/index.html",
+        "main": "examples/angular-react-mfes/angular-in-react/wc-angular-remote/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "examples/angular-react-mfes/angular-in-react/wc-angular-remote/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "examples/angular-react-mfes/angular-in-react/wc-angular-remote/public"
+          }
+        ],
+        "styles": [
+          "examples/angular-react-mfes/angular-in-react/wc-angular-remote/src/styles.css"
+        ],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "examples/angular-react-mfes/angular-in-react/wc-angular-remote/webpack.config.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "examples/angular-react-mfes/angular-in-react/wc-angular-remote/webpack.prod.config.ts"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "options": {
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "wc-angular-remote:build:production"
+        },
+        "development": {
+          "buildTarget": "wc-angular-remote:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "wc-angular-remote:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "examples/angular-react-mfes/angular-in-react/wc-angular-remote/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "wc-angular-remote:build",
+        "port": 4201,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "wc-angular-remote:build:development"
+        },
+        "production": {
+          "buildTarget": "wc-angular-remote:build:production"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "wc-react-shell",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "examples/angular-react-mfes/angular-in-react/wc-react-shell/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rspack:rspack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "web",
+        "outputPath": "dist/examples/angular-react-mfes/angular-in-react/wc-react-shell",
+        "main": "examples/angular-react-mfes/angular-in-react/wc-react-shell/src/main.ts",
+        "tsConfig": "examples/angular-react-mfes/angular-in-react/wc-react-shell/tsconfig.app.json",
+        "rspackConfig": "examples/angular-react-mfes/angular-in-react/wc-react-shell/rspack.config.ts",
+        "assets": [
+          "examples/angular-react-mfes/angular-in-react/wc-react-shell/src/favicon.ico",
+          "examples/angular-react-mfes/angular-in-react/wc-react-shell/src/assets"
+        ]
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production",
+          "optimization": true,
+          "sourceMap": false,
+          "rspackConfig": "examples/angular-react-mfes/angular-in-react/wc-react-shell/rspack.config.prod.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/rspack:module-federation-dev-server",
+      "options": {
+        "buildTarget": "wc-react-shell:build:development",
+        "port": 4200
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "buildTarget": "wc-react-shell:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "executor": "@nx/rspack:module-federation-static-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "serveTarget": "wc-react-shell:serve"
+      },
+      "configurations": {
+        "development": {
+          "serveTarget": "wc-react-shell:serve:development"
+        },
+        "production": {
+          "serveTarget": "wc-react-shell:serve:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "examples/angular-react-mfes/angular-in-react/wc-react-shell/jest.config.ts"
+      }
+    }
+  }
+}
