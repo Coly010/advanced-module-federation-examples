@@ -68,6 +68,7 @@
     "@angular/platform-browser": "~18.2.0",
     "@angular/platform-browser-dynamic": "~18.2.0",
     "@angular/router": "~18.2.0",
+    "@module-federation/retry-plugin": "^0.6.6",
     "@module-federation/sdk": "0.6.6",
     "@nx/angular": "^19.8.3",
     "react": "18.3.1",

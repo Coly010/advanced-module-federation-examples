@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "retry_rreact_remote_broken/Module": [
+        "examples/retry-remotes/retry-rreact-remote-broken/src/remote-entry.ts"
+      ],
       "wc_angular_remote/Module": [
         "examples/angular-react-mfes/angular-in-react/wc-angular-remote/src/app/remote-entry/remote-entry.ts"
       ],

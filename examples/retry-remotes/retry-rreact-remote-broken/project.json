@@ -1,0 +1,74 @@
+{
+  "name": "retry-rreact-remote-broken",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "examples/retry-remotes/retry-rreact-remote-broken/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rspack:rspack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "web",
+        "outputPath": "dist/examples/retry-remotes/retry-rreact-remote-broken",
+        "main": "examples/retry-remotes/retry-rreact-remote-broken/src/main.ts",
+        "tsConfig": "examples/retry-remotes/retry-rreact-remote-broken/tsconfig.app.json",
+        "rspackConfig": "examples/retry-remotes/retry-rreact-remote-broken/rspack.config.ts",
+        "assets": [
+          "examples/retry-remotes/retry-rreact-remote-broken/src/favicon.ico",
+          "examples/retry-remotes/retry-rreact-remote-broken/src/assets"
+        ]
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production",
+          "optimization": true,
+          "sourceMap": false,
+          "rspackConfig": "examples/retry-remotes/retry-rreact-remote-broken/rspack.config.prod.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/rspack:module-federation-dev-server",
+      "options": {
+        "buildTarget": "retry-rreact-remote-broken:build:development",
+        "port": 4201
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "buildTarget": "retry-rreact-remote-broken:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "executor": "@nx/rspack:module-federation-static-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "serveTarget": "retry-rreact-remote-broken:serve"
+      },
+      "configurations": {
+        "development": {
+          "serveTarget": "retry-rreact-remote-broken:serve:development"
+        },
+        "production": {
+          "serveTarget": "retry-rreact-remote-broken:serve:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "examples/retry-remotes/retry-rreact-remote-broken/jest.config.ts"
+      }
+    }
+  }
+}
