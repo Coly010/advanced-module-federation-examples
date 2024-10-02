@@ -1,10 +1,10 @@
-import { ModuleFederationConfig } from '@nx/webpack';
+import { ModuleFederationConfig } from '@nx/rspack/module-federation';
 
 const config: ModuleFederationConfig = {
   name: 'wc-react-remote',
+
   exposes: {
-    './Routes':
-      'examples/angular-react-mfes/react-in-angular/wc-react-remote/src/app/remote-entry/entry.routes.ts',
+    './Module': './src/remote-entry.tsx',
   },
 };
 

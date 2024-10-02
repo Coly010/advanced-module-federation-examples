@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "wc-react-remote/Routes": [
-        "examples/angular-react-mfes/react-in-angular/wc-react-remote/src/app/remote-entry/entry.routes.ts"
+      "wc-react-remote/Module": [
+        "examples/angular-react-mfes/react-in-angular/wc-react-remote/src/remote-entry.tsx"
       ]
     }
   },

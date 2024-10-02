@@ -1,22 +1,11 @@
 export default {
   displayName: 'wc-react-remote',
   preset: '../../../../jest.preset.js',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  transform: {
+    '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',
+    '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['@nx/react/babel'] }],
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory:
     '../../../../coverage/examples/angular-react-mfes/react-in-angular/wc-react-remote',
-  transform: {
-    '^.+\\.(ts|mjs|js|html)$': [
-      'jest-preset-angular',
-      {
-        tsconfig: '<rootDir>/tsconfig.spec.json',
-        stringifyContentPathRegex: '\\.(html|svg)$',
-      },
-    ],
-  },
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
-  snapshotSerializers: [
-    'jest-preset-angular/build/serializers/no-ng-attributes',
-    'jest-preset-angular/build/serializers/ng-snapshot',
-    'jest-preset-angular/build/serializers/html-comment',
-  ],
 };
