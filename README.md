@@ -6,3 +6,6 @@
 
 ## Handle Offline Remotes
 - [Retry Remotes with Fallback](./examples/retry-remotes/README.md)
+
+## Loading Different Versions of Remotes based on Authed User
+- [B2B Dashboard](./examples/b2b-dashboard/README.md)
