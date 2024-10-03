@@ -37,5 +37,8 @@ module.exports = {
     runtimePlugins: [
       require.resolve('@module-federation/node/runtimePlugin')
     ],
+    remotes: {
+      'express-server-remote': "express_server_remote@http://localhost:4201/remoteEntry.js"
+    }
   })]
 }

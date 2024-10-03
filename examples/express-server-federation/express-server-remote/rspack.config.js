@@ -33,6 +33,7 @@ module.exports = {
   },
   plugins: [new ModuleFederationPlugin({
     remoteType: 'script',
+    library: {type:'commonjs-module'},
     isServer: true,
     name: "express_server_remote",
     exposes: {
