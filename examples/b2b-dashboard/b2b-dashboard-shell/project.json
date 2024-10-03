@@ -1,0 +1,74 @@
+{
+  "name": "b2b-dashboard-shell",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "examples/b2b-dashboard/b2b-dashboard-shell/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rspack:rspack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "web",
+        "outputPath": "dist/examples/b2b-dashboard/b2b-dashboard-shell",
+        "main": "examples/b2b-dashboard/b2b-dashboard-shell/src/main.ts",
+        "tsConfig": "examples/b2b-dashboard/b2b-dashboard-shell/tsconfig.app.json",
+        "rspackConfig": "examples/b2b-dashboard/b2b-dashboard-shell/rspack.config.ts",
+        "assets": [
+          "examples/b2b-dashboard/b2b-dashboard-shell/src/favicon.ico",
+          "examples/b2b-dashboard/b2b-dashboard-shell/src/assets"
+        ]
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production",
+          "optimization": true,
+          "sourceMap": false,
+          "rspackConfig": "examples/b2b-dashboard/b2b-dashboard-shell/rspack.config.prod.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/rspack:module-federation-dev-server",
+      "options": {
+        "buildTarget": "b2b-dashboard-shell:build:development",
+        "port": 4200
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "buildTarget": "b2b-dashboard-shell:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "executor": "@nx/rspack:module-federation-static-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "serveTarget": "b2b-dashboard-shell:serve"
+      },
+      "configurations": {
+        "development": {
+          "serveTarget": "b2b-dashboard-shell:serve:development"
+        },
+        "production": {
+          "serveTarget": "b2b-dashboard-shell:serve:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "examples/b2b-dashboard/b2b-dashboard-shell/jest.config.ts"
+      }
+    }
+  }
+}

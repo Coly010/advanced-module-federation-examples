@@ -15,6 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "b2b_dashboard_enhanced_metrics_card/Module": [
+        "examples/b2b-dashboard/b2b-dashboard-enhanced-metrics-card/src/remote-entry.ts"
+      ],
+      "b2b_dashboard_metrics_card/Module": [
+        "examples/b2b-dashboard/b2b-dashboard-metrics-card/src/remote-entry.ts"
+      ],
       "retry_rreact_remote_broken/Module": [
         "examples/retry-remotes/retry-rreact-remote-broken/src/remote-entry.ts"
       ],
