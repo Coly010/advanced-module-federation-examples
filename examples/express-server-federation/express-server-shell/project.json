@@ -1,0 +1,22 @@
+{
+  "name": "express-server-shell",
+  "root": "examples/express-server-federation/express-server-shell",
+  "sourceRoot": "examples/express-server-federation/express-server-shell/src",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/examples/express-server-federation/express-server-shell"],
+      "options": {
+        "command": "rspack build",
+        "cwd": "examples/express-server-federation/express-server-shell"
+      }
+    },
+    "serve": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node dist/examples/express-server-federation/express-server-shell/main.js"
+      }
+    }
+  }
+}
