@@ -1,0 +1,55 @@
+{
+  "name": "control-panel",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "examples/federation-control-panel/control-panel/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rspack:rspack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "web",
+        "outputPath": "dist/examples/federation-control-panel/control-panel",
+        "main": "examples/federation-control-panel/control-panel/src/main.tsx",
+        "tsConfig": "examples/federation-control-panel/control-panel/tsconfig.app.json",
+        "rspackConfig": "examples/federation-control-panel/control-panel/rspack.config.js",
+        "assets": [
+          "examples/federation-control-panel/control-panel/src/favicon.ico",
+          "examples/federation-control-panel/control-panel/src/assets"
+        ]
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production",
+          "optimization": true,
+          "sourceMap": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/rspack:dev-server",
+      "options": {
+        "buildTarget": "control-panel:build:development"
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "buildTarget": "control-panel:build:production"
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "control-panel:build",
+        "spa": true
+      }
+    }
+  }
+}

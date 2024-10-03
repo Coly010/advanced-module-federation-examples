@@ -1,0 +1,14 @@
+{
+  "name": "control-panel-fake-db",
+  "root": "examples/federation-control-panel/fake-db",
+  "sourceRoot": "examples/federation-control-panel/fake-db/src",
+  "targets": {
+    "serve" : {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx ts-node ./src/index.ts",
+        "cwd": "examples/federation-control-panel/fake-db"
+      }
+    }
+  }
+}
