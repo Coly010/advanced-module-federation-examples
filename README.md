@@ -9,3 +9,6 @@
 
 ## Loading Different Versions of Remotes based on Authed User
 - [B2B Dashboard](./examples/b2b-dashboard/README.md)
+
+## Node Federation
+- [Node Federation](./examples/express-server-federation/README.md)
