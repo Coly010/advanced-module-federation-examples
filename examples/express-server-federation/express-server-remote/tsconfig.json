@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "../../../dist",
+    "types": ["node"],
+    "allowJs": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true
+  },
+  "files": ["src/index.ts"],
+  "include": [],
+}
