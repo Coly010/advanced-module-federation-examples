@@ -21,6 +21,12 @@
       "b2b_dashboard_metrics_card/Module": [
         "examples/b2b-dashboard/b2b-dashboard-metrics-card/src/remote-entry.ts"
       ],
+      "control-panel-new-remote/Module": [
+        "examples/federation-control-panel/control-panel-new-remote/src/remote-entry.ts"
+      ],
+      "control-panel-old-remote/Module": [
+        "examples/federation-control-panel/control-panel-old-remote/src/remote-entry.ts"
+      ],
       "retry_rreact_remote_broken/Module": [
         "examples/retry-remotes/retry-rreact-remote-broken/src/remote-entry.ts"
       ],

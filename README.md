@@ -12,3 +12,6 @@
 
 ## Node Federation
 - [Node Federation](./examples/express-server-federation/README.md)
+
+## Managing Rollbacks of Remotes with a separate Control Panel
+- [Managing Rollbacks of Remotes with a separate Control Panel](./examples/federation-control-panel/README.md)

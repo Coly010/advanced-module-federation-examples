@@ -1,0 +1,71 @@
+{
+  "name": "control-panel-old-remote",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "examples/federation-control-panel/control-panel-old-remote/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rspack:rspack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "web",
+        "outputPath": "dist/examples/federation-control-panel/control-panel-old-remote",
+        "main": "examples/federation-control-panel/control-panel-old-remote/src/main.ts",
+        "tsConfig": "examples/federation-control-panel/control-panel-old-remote/tsconfig.app.json",
+        "rspackConfig": "examples/federation-control-panel/control-panel-old-remote/rspack.config.ts",
+        "assets": [
+          "examples/federation-control-panel/control-panel-old-remote/src/favicon.ico",
+          "examples/federation-control-panel/control-panel-old-remote/src/assets"
+        ]
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production",
+          "optimization": true,
+          "sourceMap": false,
+          "rspackConfig": "examples/federation-control-panel/control-panel-old-remote/rspack.config.prod.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/rspack:module-federation-dev-server",
+      "options": {
+        "buildTarget": "control-panel-old-remote:build:development",
+        "port": 4202
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "buildTarget": "control-panel-old-remote:build:production"
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/rspack:module-federation-static-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "serveTarget": "control-panel-old-remote:serve"
+      },
+      "configurations": {
+        "development": {
+          "serveTarget": "control-panel-old-remote:serve:development"
+        },
+        "production": {
+          "serveTarget": "control-panel-old-remote:serve:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "examples/federation-control-panel/control-panel-old-remote/jest.config.ts"
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@ function writeManifestJson(json: any) {
 }
 // rewrite the file to a base
 const manifestJson = getManifestJson();
-manifestJson.control_panel_remote = "http://localhost:4201";
+manifestJson.control_panel_remote = "http://localhost:4201/mf-manifest.json";
 writeManifestJson(manifestJson);
 
 
@@ -23,7 +23,7 @@ const app = express();
 app.use(cors());
 app.get("/rollback", (req, res) => {
   const manifestJson = getManifestJson();
-  manifestJson.control_panel_remote = "http://localhost:4202";
+  manifestJson.control_panel_remote = "http://localhost:4202/mf-manifest.json";
   writeManifestJson(manifestJson);
   res.json({message: "Rollback complete"})
 })

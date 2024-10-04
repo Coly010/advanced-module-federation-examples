@@ -1,0 +1,77 @@
+{
+  "name": "control-panel-shell",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "examples/federation-control-panel/control-panel-shell/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rspack:rspack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "web",
+        "outputPath": "dist/examples/federation-control-panel/control-panel-shell",
+        "main": "examples/federation-control-panel/control-panel-shell/src/main.ts",
+        "tsConfig": "examples/federation-control-panel/control-panel-shell/tsconfig.app.json",
+        "rspackConfig": "examples/federation-control-panel/control-panel-shell/rspack.config.ts",
+        "assets": [
+          "examples/federation-control-panel/control-panel-shell/src/favicon.ico",
+          "examples/federation-control-panel/control-panel-shell/src/assets"
+        ]
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production",
+          "optimization": true,
+          "sourceMap": false,
+          "rspackConfig": "examples/federation-control-panel/control-panel-shell/rspack.config.prod.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/rspack:module-federation-dev-server",
+      "options": {
+        "buildTarget": "control-panel-shell:build:development",
+        "port": 4200
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "buildTarget": "control-panel-shell:build:production"
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/rspack:module-federation-static-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "serveTarget": "control-panel-shell:serve"
+      },
+      "configurations": {
+        "development": {
+          "serveTarget": "control-panel-shell:serve:development"
+        },
+        "production": {
+          "serveTarget": "control-panel-shell:serve:production"
+        }
+      }
+    },
+    "serve-all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx nx serve control-panel-fake-db & npx nx serve control-panel & npx nx serve control-panel-shell"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "examples/federation-control-panel/control-panel-shell/jest.config.ts"
+      }
+    }
+  }
+}

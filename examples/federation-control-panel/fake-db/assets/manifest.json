@@ -1,3 +1,3 @@
 {
-  "control_panel_remote": "http://localhost:4202"
+  "control_panel_remote": "http://localhost:4202/mf-manifest.json"
 }
